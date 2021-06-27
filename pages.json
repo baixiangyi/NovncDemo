@@ -1,0 +1,22 @@
+{
+	"pages": [
+		{
+			"path": "pages/login/login",
+			"style": {
+				"app-plus": {"titleNView": false} 
+			}
+		},
+		{
+			"path": "pages/index/index"
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-Demo",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	}
+}
