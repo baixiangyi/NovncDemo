@@ -5,6 +5,7 @@
 </template>
 
 <script>
+// #ifndef VUE3
 import Vue from 'vue';
 Vue.prototype.binddata = function(name, value, formName) {
 	if (formName) {
@@ -22,6 +23,9 @@ Vue.prototype.binddata = function(name, value, formName) {
 		formVm.setValue(name, value);
 	}
 };
+// #endif
+
+
 
 import Validator from './validate.js';
 /**
@@ -89,7 +93,7 @@ export default {
 		// label 宽度，单位 px
 		labelWidth: {
 			type: [String, Number],
-			default: 65
+			default: ''
 		},
 		// label 居中方式，可选值 left/center/right
 		labelAlign: {
@@ -126,6 +130,28 @@ export default {
 		}
 	},
 	created() {
+		// #ifdef VUE3
+		let getbinddata = getApp().$vm.$.appContext.config.globalProperties.binddata
+		if(!getbinddata){
+			getApp().$vm.$.appContext.config.globalProperties.binddata = function(name, value, formName){
+				if (formName) {
+					this.$refs[formName].setValue(name, value);
+				} else {
+					let formVm;
+					for (let i in this.$refs) {
+						const vm = this.$refs[i];
+						if (vm && vm.$options && vm.$options.name === 'uniForms') {
+							formVm = vm;
+							break;
+						}
+					}
+					if (!formVm) return console.error('当前 uni-froms 组件缺少 ref 属性');
+					formVm.setValue(name, value);
+				}
+			}
+		}
+		// #endif
+		
 		// 存放watch 监听数组
 		this.unwatchs = [];
 		// 存放子组件数组
@@ -153,6 +179,9 @@ export default {
 		registerWatch() {
 			// 取消监听,避免多次调用 init 重复执行 $watch
 			this.unwatchs.forEach(v => v());
+			this.childrens.forEach((v)=>{
+				v.init()
+			})
 			// watch 每个属性 ，需要知道具体那个属性发变化
 			Object.keys(this.dataValue).forEach(key => {
 				let watch = this.$watch(
@@ -317,7 +346,7 @@ export default {
 				return null;
 			}
 		},
-
+		submitForm(){},
 		/**
 		 * 外部调用方法
 		 * 手动提交校验表单

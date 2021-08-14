@@ -1,22 +1,120 @@
 {
+	"easycom": {
+		// 下载安装的方式需要前面的"@/"，npm安装的方式无需"@/"
+		// 下载安装方式
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
 	"pages": [
+		// 通用
 		{
-			"path": "pages/login/login",
-			"style": {
-				"app-plus": {"titleNView": false} 
-			}
+			// 登录页
+			"path": "pages/login/login"
 		},
 		{
-			"path": "pages/index/index"
+			// 注册
+			"path": "pages/Register/Register"
+		},
+		{
+			// 找回密码
+			"path": "pages/Retrieve/Retrieve"
+		},
+		{
+			// 隐私政策页面
+			"path": "pages/policy/policy"
+		},
+		
+		
+		// 管理员登陆
+		{
+			// 首页
+			"path": "pages/Admin/index"
+		},
+		{
+			// "我的"页面
+			"path": "pages/Admin/myConfig"
+		},
+		{
+			// 设备管理——首页
+			"path": "pages/Admin/Equipment/index"
+		},
+		{
+			// 设备管理——增加
+			"path": "pages/Admin/Equipment/addEQ"
+		},
+		
+		{
+			// 用户管理——首页
+			"path": "pages/Admin/User/index"
+		},
+		{
+			// 用户管理——增加
+			"path": "pages/Admin/User/addUser"
+		},
+		
+		{
+			// 物联网卡管理——首页
+			"path": "pages/Admin/Inte/index"
+		},
+		
+		{
+			// 远程服务——首页
+			"path": "pages/Admin/Service/index"
+		},
+		
+
+		// 用户登录
+		{
+			// 首页
+			"path": "pages/User/index"
+		},
+		{
+			// "我的"页面
+			"path": "pages/User/myConfig"
 		}
+
+		
 	],
+	// 通用顶部导航条
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-Demo",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {
-			"background": "#efeff4"
+			"background": "#efeff4",
+			"titleNView": false //设置是否要顶部栏
 		}
+	},
+	"tabBar": {
+		"color": "#7A7E83",
+		"selectedColor": "rgb(0, 122, 255)",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [
+			// 管理员登陆
+			{
+				"pagePath": "pages/Admin/index",
+				"iconPath": "static/tabbar_index.png",
+				"selectedIconPath": "static/tabbar_index2.png",
+				"text": "首页"
+			}, {
+				"pagePath": "pages/Admin/myConfig",
+				"iconPath": "static/tabbar_user.png",
+				"selectedIconPath": "static/tabbar_user2.png",
+				"text": "我的"
+			}
+			// 用户登录
+			// {
+			// 	"pagePath": "pages/index/User_index",
+			// 	"iconPath": "static/tabbar_index.png",
+			// 	"selectedIconPath": "static/tabbar_index2.png",
+			// 	"text": "首页"
+			// }, {
+			// 	"pagePath": "pages/myConfig/User_myConfig",
+			// 	"iconPath": "static/tabbar_user.png",
+			// 	"selectedIconPath": "static/tabbar_user2.png",
+			// 	"text": "我的"
+			// }
+		]
 	}
 }
